@@ -17,9 +17,15 @@ var makeCounter = function(id, config){
 
 $(document).on('ready', function(){
     var counters = [
-        makeCounter('counter1'),
-        makeCounter('counter2'),
-        makeCounter('counter3')
+        makeCounter('counter1', {
+
+        }),
+        makeCounter('counter2', {
+
+        }),
+        makeCounter('counter3', {
+            
+        })
     ];
 
     for (var i = 0; i < counters.length; i++){
