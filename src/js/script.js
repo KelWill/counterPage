@@ -3,7 +3,7 @@ var makeCounter = function(id, config){
     var counterConfig = {
         initial: '0:00.0',
         direction: 'up',
-        format: '9999',
+        format: '9999999999',
         interval: '1',
     };
     for (var key in config){
@@ -18,13 +18,19 @@ var makeCounter = function(id, config){
 $(document).on('ready', function(){
     var counters = [
         makeCounter('counter1', {
-
+            format: '99,999,999,999',
+            initial: '10,000,000,000',
+            interval: '25'
         }),
         makeCounter('counter2', {
-
+            format: '999,999,999',
+            initial: '100,000,000',
+            interval: '500'
         }),
         makeCounter('counter3', {
-            
+            format: '99,999',
+            initial: '10,000',
+            interval: '5000'
         })
     ];
 
