@@ -19,18 +19,18 @@ $(document).on('ready', function(){
     var counters = [
         makeCounter('counter1', {
             format: '99,999,999,999',
-            initial: '10,000,000,000',
-            interval: '25'
+            initial: '10,300,000,000',
+            interval: '1'
         }),
         makeCounter('counter2', {
             format: '999,999,999',
-            initial: '100,000,000',
-            interval: '500'
+            initial: '113,000,000',
+            interval: '25'
         }),
         makeCounter('counter3', {
             format: '99,999',
-            initial: '10,000',
-            interval: '5000'
+            initial: '43,161',
+            interval: '30000'
         })
     ];
 
