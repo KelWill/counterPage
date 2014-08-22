@@ -31,7 +31,7 @@ var app = {};
 app.originals = {
     'counter1': '10,893,200',
     'counter2': '312,100',
-    'counter3': '16,478'
+    'counter3': '875,293'
 };
 app.defaults = _.copy(app.originals);
 
@@ -65,7 +65,7 @@ function start(){
             interval: '2000'
         }),
         makeCounter('counter3', {
-            format: '999,999',
+            format: '9,999,999',
             interval: '180000'
         })
     ];
