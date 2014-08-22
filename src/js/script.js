@@ -18,13 +18,23 @@ _.map = function(array, fn){
     });
     return results;
 }
+
+_.copy = function(obj){
+    var result = {};
+    for (var key in obj){
+        result[key] = obj[key];
+    }
+    return result;
+};
 var app = {};
 
-app.defaults = {
+app.originals = {
     'counter1': '10,893,200',
     'counter2': '312,100',
     'counter3': '16,478'
 };
+app.defaults = _.copy(app.originals);
+
 function makeCounter(id, config){
     config = config || {};
     var counterConfig = {
@@ -36,7 +46,7 @@ function makeCounter(id, config){
 
     for (var key in config){
         counterConfig[key] = config[key];
-    }
+    };
 
     counterConfig.initial = localStorage.getItem(id) || app.defaults[id];
     counterConfig.id = id;
@@ -48,17 +58,14 @@ function start(){
     var counters = [
         makeCounter('counter1', {
             format: '999,999,999',
-            initial: '10,893,200',
             interval: '50'
         }),
         makeCounter('counter2', {
             format: '9,999,999',
-            initial: '312,100',
             interval: '2000'
         }),
         makeCounter('counter3', {
             format: '999,999',
-            initial: '16,478',
             interval: '180000'
         })
     ];
@@ -69,7 +76,7 @@ function start(){
     }
 
     setInterval(saveState, 1000);
-}
+};
 
 function calcNum(parts){
     var vals = _.map(parts, function(p){
@@ -102,10 +109,59 @@ function resetState(){
     });
 };
 
+function helpMessage(){
+    console.log('To reset timers type:');
+    console.log('restart()');
+    console.log('and then hit enter');
+    console.log('------------');
+    showSetCounterHelpMessage();
+    console.log('------------');
+    console.log('To get back to initial values, type resetInitials();');
+};
+
+function showSetCounterHelpMessage(){
+    console.log('To set a counter, type');
+    console.log('setCounter(counterToSet, numberToSetCounterTo)');
+    console.log('Where counterToSet is either 1, 2, or 3');
+    console.log('And the number to set the counter to is a number');
+    console.log('And then hit enter');
+};
+
+function setCounter(c, n){
+    if (c !== 1 && c !== 2 && c !== 3 || typeof n !== 'number'){
+        console.warn('Bad inputs!!!!!');
+        showSetCounterHelpMessage();
+        return;
+    };
+    c = 'counter' + c;
+    var s = convertNumberToAppropriateString(n);
+    localStorage.setItem(c, s);
+    app.defaults[c] = s;
+    restart();
+    return "Nice Work";
+};
+
+function resetInitials(){
+    app.defaults = _.copy(app.originals);
+    restart();
+};
+
+function convertNumberToAppropriateString(n){
+    var s = (n + '').split('');
+    for (var i = s.length - 3; i > 0; i-=3){
+        s.splice(i, 0, ',');
+    }
+    console.log(s, s.join(''));
+    return s.join('');
+};
+
 function restart(){
     resetState();
     start();
 };
 
 $(document).on('unload', saveState);
-$(document).on('ready', start);
+$(document).on('ready', function(){
+    start();
+    helpMessage();
+});
