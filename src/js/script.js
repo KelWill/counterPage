@@ -21,9 +21,9 @@ _.map = function(array, fn){
 var app = {};
 
 app.defaults = {
-    'counter1': '10,300,000,000',
-    'counter2': '113,000,000',
-    'counter3': '43,161'
+    'counter1': '10,893,200',
+    'counter2': '312,100',
+    'counter3': '16,478'
 };
 function makeCounter(id, config){
     config = config || {};
@@ -47,19 +47,19 @@ function makeCounter(id, config){
 function start(){
     var counters = [
         makeCounter('counter1', {
-            format: '99,999,999,999',
-            initial: '10,300,000,000',
-            interval: '1'
+            format: '999,999,999',
+            initial: '10,893,200',
+            interval: '50'
         }),
         makeCounter('counter2', {
-            format: '999,999,999',
-            initial: '113,000,000',
-            interval: '25'
+            format: '9,999,999',
+            initial: '312,100',
+            interval: '2000'
         }),
         makeCounter('counter3', {
-            format: '99,999',
-            initial: '43,161',
-            interval: '30000'
+            format: '999,999',
+            initial: '16,478',
+            interval: '180000'
         })
     ];
 
