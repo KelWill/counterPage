@@ -66,7 +66,7 @@ function start(){
         }),
         makeCounter('counter3', {
             format: '9,999,999',
-            interval: '180000'
+            interval: '3000'
         })
     ];
 
